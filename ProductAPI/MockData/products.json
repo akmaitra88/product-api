@@ -1,0 +1,62 @@
+[
+  {
+    "categoryId": "1",
+    "productId": "1",
+    "title": "Oversized jacket",
+    "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+    "price": 21,
+    "image": "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Fb7%2Fd7%2Fb7d7ef5e11ead935f168dfde35f9c077e9d80711.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/main]",
+    "rating": 3.9,
+    "rateCount": 120
+  },
+  {
+    "categoryId": "1",
+    "productId": "2",
+    "title": "Long cardigan",
+    "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+    "price": 12,
+    "image": "https://lp2.hm.com/hmgoepprod?set=source[/b6/c6/b6c68cf71db7f2bdbed82d15d12a609b40054e0b.jpg],origin[dam],category[ladies_basics_cardigansjumpers],type[DESCRIPTIVESTILLLIFE],res[y],hmver[2]&call=url[file:/product/main]",
+    "rating": 4.1,
+    "rateCount": 259
+  },
+  {
+    "categoryId": "1",
+    "productId": "3",
+    "title": "Terry zip-through hoodie",
+    "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+    "price": 12,
+    "image": "https://lp2.hm.com/hmgoepprod?set=source[/87/e6/87e6b544609b50e31ee82d2dbce91a20ddb6776e.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[y],hmver[2]&call=url[file:/product/main]",
+    "rating": 4.7,
+    "rateCount": 500
+  },
+  {
+    "categoryId": "1",
+    "productId": "4",
+    "title": "MAMA Skinny Jeans",
+    "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
+    "price": 24,
+    "image": "https://lp2.hm.com/hmgoepprod?set=source[/0b/9f/0b9fc7e639aa5536805095652d2b9b2751087f02.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[y],hmver[2]&call=url[file:/product/main]",
+    "rating": 2.1,
+    "rateCount": 430
+  },
+  {
+    "categoryId": "2",
+    "productId": "5",
+    "title": "Loose Straight High Jeans",
+    "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
+    "price": 18,
+    "image": "https://lp2.hm.com/hmgoepprod?set=source[/37/d4/37d40639c95029a926c972c7da2f6d1372219bcd.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[y],hmver[2]&call=url[file:/product/main]",
+    "rating": 4.6,
+    "rateCount": 400
+  },
+  {
+    "categoryId": "3",
+    "productId": "10",
+    "title": "Sibling top",
+    "description": "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)",
+    "price": 3,
+    "image": "https://lp2.hm.com/hmgoepprod?set=source[/32/ba/32bab92277f604ac28e97322d0b0e8fdc0f848ff.jpg],origin[dam],category[kids_girls_clothing_topstshirts_tshirts],type[DESCRIPTIVESTILLLIFE],res[y],hmver[2]&call=url[file:/product/main]",
+    "rating": 2.9,
+    "rateCount": 470
+  }
+]
