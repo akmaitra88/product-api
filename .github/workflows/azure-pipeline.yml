@@ -25,5 +25,5 @@ jobs:
         username: ${{ secrets.ACR_REGISTRY_USERNAME }}
         password: ${{ secrets.ACR_REGISTRY_PASSWORD }}        
     - run: |        
-        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:${{ github.sha }}
-        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:${{ github.sha }}
+        docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:${{ github.sha }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:latest .
+        docker push -a ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi
