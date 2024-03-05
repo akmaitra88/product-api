@@ -52,3 +52,4 @@ jobs:
           ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:${{ github.sha }}
         imagepullsecrets: |
           k8s-secret
+        namespace: api-dev-01
