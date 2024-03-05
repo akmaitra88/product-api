@@ -59,15 +59,15 @@ jobs:
 
     - name: Deploy to AKS Cluster
       run: |
-        kubectl apply -f ./manifests/deployment.yml
-        kubectl apply -f ./manifests/service.yml
+        kubectl apply -f deployment.yml
+        kubectl apply -f service.yml
         
     - name: Deploy to Azure Kubernetes Cluster
       uses: Azure/k8s-deploy@v1
       with:
         manifests: |
-           ../../deployment.yml
-           ../../service.yml
+            manifests/deployment.yml
+            manifests/service.yml
         images: |
           ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:${{ github.sha }}
         imagepullsecrets: |
