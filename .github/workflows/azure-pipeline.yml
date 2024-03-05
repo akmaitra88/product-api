@@ -7,7 +7,7 @@ env:
   ACR_REPOSITORY: productapi          # set this to your Amazon ECR repository name
   
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-latest    
     steps:
     - name: 'Checkout GitHub Action'
@@ -27,3 +27,35 @@ jobs:
     - run: |        
         docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:${{ github.sha }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:latest .
         docker push -a ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi
+
+  Deploy:
+    name: Deploy to AKS
+    needs: [Build]
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set AKS Context
+      uses: Azure/aks-set-context@v1
+      with:
+        creds: '${{ secrets.AZURE_CREDENTIALS }}'
+        cluster-name: myPOCAKSCluster
+        resource-group: rg-dotnet-poc-01
+        
+    - name: Configure and create K8s secrets
+      uses: Azure/k8s-create-secret@v1
+      with:
+        container-registry-url: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+        container-registry-username: ${{ secrets.ACR_REGISTRY_USERNAME }}
+        container-registry-password: ${{ secrets.ACR_REGISTRY_PASSWORD }}
+        secret-name: k8s-secret
+
+    - name: Deploy to Azure Kubernetes Cluster
+      uses: Azure/k8s-deploy@v1
+      with:
+        manifests: |
+          ./k8s/deployment.yml
+          ./k8s/service.yml
+        images: |
+          ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:${{ github.sha }}
+        imagepullsecrets: |
+          k8s-secret
