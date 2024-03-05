@@ -28,26 +28,11 @@ jobs:
         docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:${{ github.sha }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:latest .
         docker push -a ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi
 
-  Deploy:
-    name: Deploy to AKS
-    needs: [Build]
-    permissions:
-      actions: read
-      contents: read
-      id-token: write
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Set AKS Context
-      uses: Azure/aks-set-context@v1
+    - uses: Azure/aks-set-context@v1
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
         cluster-name: myPOCAKSCluster
         resource-group: rg-dotnet-poc-01
-
-    - name: Print Folder Structure
-      run: |
-        find ${{ github.workspace }}
     
     - name: Configure and create K8s secrets
       uses: Azure/k8s-create-secret@v1
@@ -61,8 +46,8 @@ jobs:
       uses: Azure/k8s-deploy@v1
       with:
         manifests: |
-            ./kubernetes/deployment.yml
-            ./kubernetes/service.yml
+            kubernetes/deployment.yml
+            kubernetes/service.yml
         images: |
           ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:${{ github.sha }}
         imagepullsecrets: |
