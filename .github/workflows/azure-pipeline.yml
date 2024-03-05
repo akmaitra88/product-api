@@ -59,8 +59,8 @@ jobs:
 
     - name: Deploy to AKS Cluster
       run: |
-        kubectl apply -f deployment.yml
-        kubectl apply -f service.yml
+        kubectl apply -f manifests/deployment.yml
+        kubectl apply -f manifests/service.yml
         
     - name: Deploy to Azure Kubernetes Cluster
       uses: Azure/k8s-deploy@v1
