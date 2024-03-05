@@ -57,6 +57,11 @@ jobs:
         container-registry-password: ${{ secrets.ACR_REGISTRY_PASSWORD }}
         secret-name: k8s-secret
 
+    - name: Deploy to AKS Cluster
+      run: |
+        kubectl apply -f ./manifests/deployment.yml
+        kubectl apply -f ./manifests/service.yml
+        
     - name: Deploy to Azure Kubernetes Cluster
       uses: Azure/k8s-deploy@v1
       with:
