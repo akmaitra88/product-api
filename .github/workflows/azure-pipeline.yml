@@ -1,0 +1,35 @@
+name: Build Linux Container Image and Push to ACR
+
+on:
+  push:
+    branches: [ "master" ]
+env:  
+  ACR_REPOSITORY: productapi          # set this to your Amazon ECR repository name
+  ACR_REGISTRY: privatepocacr01.azurecr.io
+  SERVICE_NAME: product-api
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: dotnet
+    steps:
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@v2
+
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: 'Build and Push image'
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+        username: ${{ secrets.ACR_REGISTRY_USERNAME }}
+        password: ${{ secrets.ACR_REGISTRY_PASSWORD }}        
+    - run: |        
+        docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:$IMAGE_TAG -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}:latest .
+        docker push -a ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ env.ACR_REPOSITORY }}
