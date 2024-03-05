@@ -42,7 +42,9 @@ jobs:
         resource-group: rg-dotnet-poc-01
 
     - name: Print Folder Structure
-      run: ls -R ${{ github.workspace }}
+      run: |
+        ls -R ${{ github.workspace }} > folder_structure.txt
+        cat folder_structure.txt
     
     - name: Configure and create K8s secrets
       uses: Azure/k8s-create-secret@v1
