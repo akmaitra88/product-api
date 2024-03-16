@@ -10,12 +10,14 @@ namespace ProductAPI.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IConfiguration _configuration;
+        private readonly ILogger<ProductController> _logger;
         private readonly bool _isPaginationEnabled;
         private readonly int _pageSize;
 
-        public ProductController(IConfiguration configuration)
+        public ProductController(IConfiguration configuration, ILogger<ProductController> logger)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _isPaginationEnabled = Convert.ToBoolean(_configuration["IsPaginnationEnabled"]);
             _pageSize = Convert.ToInt32(_configuration["PageSize"]);
         }
@@ -27,8 +29,11 @@ namespace ProductAPI.Controllers
         {
             var products = CommonHelper.GetMockModel<List<Product>>();
 
+            _logger.LogInformation($"Pagination feature flag value is :: {_isPaginationEnabled} and Page size is :: {_pageSize}");
+
             if (_isPaginationEnabled) 
             {
+                _logger.LogInformation("Applying pagination rules..");
                 products = products.Take(_pageSize).ToList();
             }
 
