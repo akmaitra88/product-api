@@ -41,21 +41,7 @@ jobs:
         container-registry-username: ${{ secrets.ACR_REGISTRY_USERNAME }}
         container-registry-password: ${{ secrets.ACR_REGISTRY_PASSWORD }}
         secret-name: k8s-secret
-        
-    - name: Deploy to Azure Kubernetes Cluster
-      uses: Azure/k8s-deploy@v1
-      with:
-        manifests: |
-            kubernetes/deployment.yml
-            kubernetes/service.yml
-        images: |
-          ${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:${{ github.sha }}
-        imagepullsecrets: |
-          k8s-secret
-        namespace: api-dev-01
 
     - name: Deploy helm chart to AKS
       run: |
         helm upgrade --install helm3 helm3/charts --namespace api-dev-01 --set image.repository=${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:latest
-
-
