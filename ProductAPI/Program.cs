@@ -1,5 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
-builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+// builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+// Application would rely on configmap for all configurations
 
 // Add services to the container.
 
