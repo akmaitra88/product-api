@@ -19,3 +19,7 @@ spec:
           imagePullPolicy: {{ .Values.IMAGE_PULL_POLICY }}
           ports:
           - containerPort: {{ .Values.TARGET_PORT }}
+          volumeMounts:
+            - name: appsettings-config
+              mountPath: /app/configmap
+              readOnly: true
