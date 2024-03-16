@@ -1,5 +1,7 @@
 # ProductAPI
 This is a product api build on .NET 6 and containerized using Docker.
+GitHub : https://github.com/akmaitra88/product-api
+
 - Build and Push the API image into ACR
 - Deploy the image from ACR to AKS
 - Using Helm chart for packaging deployment
@@ -16,6 +18,7 @@ Repository Secrets
 - AZURE_CREDENTIALS
 - REGISTRY_LOGIN_SERVER
 - RESOURCE_GROUP
+
 ![Alt text](image.png)
 
 ## Infrastructure Set up
@@ -100,4 +103,10 @@ From <https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-
 
 kubectl get deployments -n api-dev-01
 
+```
+
+## Clean or Destroy AKS Deployments and Services
+```
+kubectl delete deploy product-api -n api-dev-01
+kubectl delete service product-api -n api-dev-01
 ```
