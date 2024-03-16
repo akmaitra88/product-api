@@ -23,3 +23,7 @@ spec:
             - name: appsettings-config
               mountPath: /app/configmap
               readOnly: true
+      volumes:
+        - name: appsettings-config
+          configMap:
+            name: {{ .Values.SERVICE_NAME }}-appsettings-config
