@@ -1,3 +1,3 @@
 apiVersion: v2
-name: product-api
+name: helm3
 version: 0.2.0
