@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.SERVICE_NAME }}-appsettings-config
+  namespace: {{ .Values.NAMESPACE }}
+data:
+  appsettings.configmap.json: |-
+    {
+      "Logging": {
+        "LogLevel": {
+          "Default": "Information",
+          "Microsoft.AspNetCore": "Warning"
+        }
+      },
+      "IsPaginnationEnabled": {{ .Values.IS_PAGINATION_ENABLED }},
+      "PageSize": {{ .Values.PAGE_SIZE }},
+      "AllowedHosts": "*"
+    }

@@ -5,3 +5,5 @@ REPLICA_COUNT: 1
 CONTAINER_NAME: privatepocacr01
 IMAGE_NAME: privatepocacr01.azurecr.io/productapi:latest
 IMAGE_PULL_POLICY: Always
+IS_PAGINATION_ENABLED: true
+PAGE_SIZE: 5
