@@ -36,25 +36,25 @@ groupId=$(az group show --name <resource-group-name> --query id --output tsv)
 Resource-group-name = rg-dotnet-poc-01
 
 az group show --name rg-dotnet-poc-01 --query id --output tsv
-Output : /subscriptions/82accf95-d833-4be2-bc41-70c0ecaf3b99/resourceGroups/rg-dotnet-poc-01
+Output : /subscriptions/<subcscription-id>/resourceGroups/rg-dotnet-poc-01
 
 az ad sp create-for-rbac --scope $groupId --role Contributor --json-auth
 
-az ad sp create-for-rbac --name "AzServicePrincipal" --scope /subscriptions/82accf95-d833-4be2-bc41-70c0ecaf3b99/resourceGroups/rg-dotnet-poc-01 --role Contributor
+az ad sp create-for-rbac --name "AzServicePrincipal" --scope /subscriptions/<subcscription-id>/resourceGroups/rg-dotnet-poc-01 --role Contributor
 
 {
-  "appId": "e814a67c-f885-4246-a3aa-7a1b81521803",
+  "appId": "<client-id>",
   "displayName": "AzServicePrincipal",
-  "password": "uiP8Q~0IRwMQANmV4DowANclsnZK8KTALZsvYbBX",
-  "tenant": "36b9a392-41bd-4ef8-96f9-4ed6c8ed4118"
+  "password": "<password>",
+  "tenant": "<tenant-id>"
 }
 
 Save this JSON as repository secret into AZURE_CREDENTIALS
 {
-  "clientId": "e814a67c-f885-4246-a3aa-7a1b81521803",
-  "clientSecret": "uiP8Q~0IRwMQANmV4DowANclsnZK8KTALZsvYbBX",
-  "subscriptionId": "82accf95-d833-4be2-bc41-70c0ecaf3b99",
-  "tenantId": "36b9a392-41bd-4ef8-96f9-4ed6c8ed4118",
+  "clientId": "<client-id>",
+  "clientSecret": "<client-secret>",
+  "subscriptionId": "<subcscription-id>",
+  "tenantId": "<tenant-id>",
   "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
   "resourceManagerEndpointUrl": "https://management.azure.com/",
   "activeDirectoryGraphResourceId": "https://graph.windows.net/",
@@ -69,12 +69,12 @@ Get the resource ID of your container registry. Substitute the name of your regi
 registryId=$(az acr show --name <registry-name> --resource-group <resource-group-name> --query id --output tsv)
 az acr show --name privatepocacr01 --resource-group rg-dotnet-poc-01 --query id --output tsv
 
-Output: /subscriptions/82accf95-d833-4be2-bc41-70c0ecaf3b99/resourceGroups/rg-dotnet-poc-01/providers/Microsoft.ContainerRegistry/registries/privatepocacr01
+Output: /subscriptions/<subcscription-id>/resourceGroups/rg-dotnet-poc-01/providers/Microsoft.ContainerRegistry/registries/privatepocacr01
 
 Use az role assignment create to assign the AcrPush role, which gives push and pull access to the registry. Substitute the client ID of your service principal:
 az role assignment create --assignee <ClientId> --scope $registryId --role AcrPush
 
-az role assignment create --assignee e814a67c-f885-4246-a3aa-7a1b81521803 --scope /subscriptions/82accf95-d833-4be2-bc41-70c0ecaf3b99/resourceGroups/rg-dotnet-poc-01/providers/Microsoft.ContainerRegistry/registries/privatepocacr01 --role AcrPush
+az role assignment create --assignee e814a67c-f885-4246-a3aa-7a1b81521803 --scope /subscriptions/<subcscription-id>/resourceGroups/rg-dotnet-poc-01/providers/Microsoft.ContainerRegistry/registries/privatepocacr01 --role AcrPush
 
 Output: 
 {
@@ -82,13 +82,13 @@ Output:
   "condition": null,
   "conditionVersion": null,
   "description": null,
-  "id": "/subscriptions/82accf95-d833-4be2-bc41-70c0ecaf3b99/resourceGroups/rg-dotnet-poc-01/providers/Microsoft.ContainerRegistry/registries/privatepocacr01/providers/Microsoft.Authorization/roleAssignments/43480938-9aaf-41da-9207-312782727baa",
+  "id": "/subscriptions/<subcscription-id>/resourceGroups/rg-dotnet-poc-01/providers/Microsoft.ContainerRegistry/registries/privatepocacr01/providers/Microsoft.Authorization/roleAssignments/43480938-9aaf-41da-9207-312782727baa",
   "name": "43480938-9aaf-41da-9207-312782727baa",
   "principalId": "cd45711f-0eb5-4f39-a9a7-31ce62d5bc38",
   "principalType": "ServicePrincipal",
   "resourceGroup": "rg-dotnet-poc-01",
-  "roleDefinitionId": "/subscriptions/82accf95-d833-4be2-bc41-70c0ecaf3b99/providers/Microsoft.Authorization/roleDefinitions/8311e382-0749-4cb8-b61a-304f252e45ec",
-  "scope": "/subscriptions/82accf95-d833-4be2-bc41-70c0ecaf3b99/resourceGroups/rg-dotnet-poc-01/providers/Microsoft.ContainerRegistry/registries/privatepocacr01",
+  "roleDefinitionId": "/subscriptions/<subcscription-id>/providers/Microsoft.Authorization/roleDefinitions/8311e382-0749-4cb8-b61a-304f252e45ec",
+  "scope": "/subscriptions/<subcscription-id>/resourceGroups/rg-dotnet-poc-01/providers/Microsoft.ContainerRegistry/registries/privatepocacr01",
   "type": "Microsoft.Authorization/roleAssignments"
 }
 

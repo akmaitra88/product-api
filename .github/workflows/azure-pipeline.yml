@@ -4,7 +4,8 @@ on:
   push:
     branches: [ "master" ]
 env:  
-  ACR_REPOSITORY: productapi 
+  ACR_REPOSITORY: productapi
+  SERVICE_NAME: product-api
   HELM_RELEASE_NAME: helm3
   HELM_CHART_PATH: helm3/charts
   
@@ -47,3 +48,7 @@ jobs:
     - name: Deploy helm chart to AKS
       run: |
         helm upgrade --install ${{ env.HELM_RELEASE_NAME }} ${{ env.HELM_CHART_PATH }} --namespace api-dev-01 --set image.repository=${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:latest
+
+    - name: Restart Pods
+      run: |
+        kubectl rollout restart deployment ${{ env.SERVICE_NAME }} -n api-dev-01
