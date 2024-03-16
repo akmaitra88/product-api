@@ -2,5 +2,6 @@ SERVICE_NAME: product-api
 SERVICE_PORT: 80
 TARGET_PORT: 8080
 REPLICA_COUNT: 1
+CONTAINER_NAME: privatepocacr01
 IMAGE_NAME: privatepocacr01.azurecr.io/productapi:latest
 IMAGE_PULL_POLICY: Always

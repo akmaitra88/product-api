@@ -23,4 +23,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapGet("/api", () => "This is Product API, hosted in AKS.");
+
 app.Run();

@@ -4,7 +4,9 @@ on:
   push:
     branches: [ "master" ]
 env:  
-  ACR_REPOSITORY: productapi          # set this to your Amazon ECR repository name
+  ACR_REPOSITORY: productapi 
+  HELM_RELEASE_NAME: helm3
+  HELM_CHART_PATH: helm3/charts
   
 jobs:
   Build:
@@ -32,7 +34,7 @@ jobs:
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
         cluster-name: myPOCAKSCluster
-        resource-group: rg-dotnet-poc-01
+        resource-group: ${{ secrets.RESOURCE_GROUP }}
     
     - name: Configure and create K8s secrets
       uses: Azure/k8s-create-secret@v1
@@ -44,4 +46,4 @@ jobs:
 
     - name: Deploy helm chart to AKS
       run: |
-        helm upgrade --install helm3 helm3/charts --namespace api-dev-01 --set image.repository=${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:latest
+        helm upgrade --install ${{ env.HELM_RELEASE_NAME }} ${{ env.HELM_CHART_PATH }} --namespace api-dev-01 --set image.repository=${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:latest

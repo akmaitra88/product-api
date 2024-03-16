@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: product-api
+  name: {{ .Values.SERVICE_NAME }}
   namespace: api-dev-01
 spec:
-  replicas: 1
+  replicas: {{ .Values.REPLICA_COUNT }}
   selector:
     matchLabels:
-      app: product-api
+      app: {{ .Values.SERVICE_NAME }}
   template:
     metadata:
       labels:
-        app: product-api
+        app: {{ .Values.SERVICE_NAME }}
     spec:
       containers:
-        - name: privatepocacr01
-          image: privatepocacr01.azurecr.io/productapi:latest
-          imagePullPolicy: Always
+        - name: {{ .Values.CONTAINER_NAME }}
+          image: {{ .Values.IMAGE_NAME }}
+          imagePullPolicy: {{ .Values.IMAGE_PULL_POLICY }}
           ports:
-          - containerPort: 8080
+          - containerPort: {{ .Values.TARGET_PORT }}

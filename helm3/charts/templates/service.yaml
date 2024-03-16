@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: product-api
+  name: {{ .Values.SERVICE_NAME }}
   namespace: api-dev-01
 spec:
   type: LoadBalancer
   ports:
-    - port: 80
+    - port: {{ .Values.SERVICE_PORT }}
       #targetPort: {{ .Values.TARGET_PORT }}
   selector:
-    app: product-api
+    app: {{ .Values.SERVICE_NAME }}
