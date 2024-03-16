@@ -53,9 +53,3 @@ jobs:
         imagepullsecrets: |
           k8s-secret
         namespace: api-dev-01
-
-    - name: Deploy helm chart to AKS
-      run: |
-        helm upgrade --install helm3 helm3/charts --namespace api-dev-01 --set image.repository=${{ secrets.REGISTRY_LOGIN_SERVER }}/productapi:latest
-
-
