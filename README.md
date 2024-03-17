@@ -105,6 +105,16 @@ kubectl get deployments -n api-dev-01
 
 ```
 
+## Debug Logs & validate configs
+Check logs on a pod
+kubectl logs <pod-name> -n <namespace-name>
+
+Check env variables on a pod
+kubectl exec -it kubectl logs <pod-name> -n <namespace-name> -- env
+
+Check config map details
+kubectl describe configmap <config-map-name>
+
 ## Clean or Destroy AKS Deployments and Services
 ```
 kubectl delete deploy product-api -n api-dev-01
