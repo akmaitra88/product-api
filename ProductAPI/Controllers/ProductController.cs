@@ -29,6 +29,9 @@ namespace ProductAPI.Controllers
         {
             var products = CommonHelper.GetMockModel<List<Product>>();
 
+            _logger.LogInformation($"Pagination flag value :: {Environment.GetEnvironmentVariable("IsPaginnationEnabled")}");
+            _logger.LogInformation($"Page size value :: {Environment.GetEnvironmentVariable("PageSize")}");
+
             _logger.LogInformation($"Pagination feature flag value is :: {_isPaginationEnabled} and Page size is :: {_pageSize}");
 
             if (_isPaginationEnabled) 
