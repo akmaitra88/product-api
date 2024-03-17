@@ -24,7 +24,8 @@ spec:
                 name: {{ .Values.SERVICE_NAME }}-appsettings-config
           volumeMounts:
             - name: appsettings-config
-              mountPath: /app/configmap
+              mountPath: /app/appsettings.configmap.json
+              subPath: appsettings.configmap.json
               readOnly: true
       volumes:
         - name: appsettings-config
