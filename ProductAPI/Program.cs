@@ -1,6 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 builder.Configuration.AddJsonFile("appsettings.configmap.json", optional: true, reloadOnChange: true);
-// builder.Configuration.AddEnvironmentVariables();
+builder.Configuration.AddEnvironmentVariables();
 
 // Add services to the container.
 
@@ -17,6 +18,8 @@ app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Product API V1");
     c.RoutePrefix = "";
+    c.DisplayOperationId();
+    c.DisplayRequestDuration();
 });
 
 app.UseHttpsRedirection();
