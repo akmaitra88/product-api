@@ -34,7 +34,7 @@ jobs:
     - uses: Azure/aks-set-context@v1
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
-        cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
+        cluster-name: sandboxPOCAKSCluster
         resource-group: ${{ secrets.RESOURCE_GROUP }}
     
     - name: Configure and create K8s secrets
