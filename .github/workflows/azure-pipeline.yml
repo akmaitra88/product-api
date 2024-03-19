@@ -1,4 +1,4 @@
-name: Build Linux Container Image and Push to ACR
+name: Build Container Image and Push to AKS from ACR
 
 on:
   push:
